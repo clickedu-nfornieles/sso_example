@@ -2,6 +2,9 @@
 # bare minimum to get vouch running with OpenID Connect (such as okta)
 
 vouch:
+    #logLevel: debug
+    #testing: true
+    
     listen: 0.0.0.0
     port: 9090
     allowAllUsers: true
@@ -14,7 +17,7 @@ vouch:
     cookie:
       name: my-vouch-ct
       secure: false
-      domain: localhost
+      domain: prova.io
   
     headers:
       jwt: X-Vouch-Token
@@ -39,4 +42,5 @@ oauth:
         - openid
         - email
         - profile
-    callback_url: https://localhost/sso/auth
+    #callback_url: http://localhost:9090/auth
+    callback_url: https://vouch.prova.io/auth
