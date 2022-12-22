@@ -7,11 +7,23 @@ services:
             - ./vouch/config/config.yml:/config/config.yml
         ports:
             - 9090:9090
-    
+              
+    app1:
+        image: nginx
+        depends_on: 
+            - vouch
+        volumes:
+            - ./nginx-app/conf.d/:/etc/nginx/conf.d/
+            - ./web/:/usr/share/nginx/html/
+            - ./cert/:/certs
+#        ports:
+#            - 8080:8080        
+
     nginx:
         image: nginx
         depends_on: 
             - vouch
+            - app1
         volumes:
             - ./nginx/conf.d/:/etc/nginx/conf.d/
             - ./web/:/usr/share/nginx/html/
